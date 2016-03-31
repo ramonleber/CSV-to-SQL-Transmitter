@@ -7,6 +7,7 @@ Created on 18.12.2015
 from PyQt4 import QtCore, QtGui
 from Database import Database
 from PyQt4.Qt import QColor
+from pymysql.err import Error
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -116,27 +117,29 @@ class Ui_Dialog(object):
         self.pushButton_Parse.setText(QtGui.QApplication.translate("Dialog", "Parse", None, QtGui.QApplication.UnicodeUTF8))
 
     def handleButtonParsedClicked(self):
-        path = 'C:/Users/rleber/Desktop/150908/'
-        #str(self.lineEdit_path.text())
-        hostname = str(self.lineEdit_host.text())
+        self.textBrowser.setText("")
+        path = str(self.lineEdit_path.text())
+        hostname =  str(self.lineEdit_host.text())
         username = str(self.lineEdit_user.text())
         password = str(self.lineEdit_passwd.text())
-        database = str(self.lineEdit_db.text()) 
+        databasename = str(self.lineEdit_db.text()) 
         tableKey= str(self.lineEdit_tableKey.text())
         attNameKey= str(self.lineEdit_attNameKey.text())
         attTypeKey= str(self.lineEdit_attTypeKey.text())
         dataKey= str(self.lineEdit_dataKey.text())
-    
+        
         # Open database connection
-        db = pymysql.connect(host = hostname, # your host, usually localhost 
+        try:
+            db = pymysql.connect(host = hostname, # your host, usually localhost 
                              user = username, # your username 
-                             passwd = password, # your password 
-                             db = database) # name of the data base
+                             passwd = password) # your password 
+        except pymysql.Error as err:
+            print(err)
         
         for filename in os.listdir(path):
             csv_data = csv.reader(open(path+filename), delimiter=";")
             database = Database(db, csv_data)
-            database.createTable(tableKey, attNameKey, attTypeKey, dataKey)
+            database.createTable(tableKey, attNameKey, attTypeKey, dataKey, databasename)
         self.textBrowser.setText("Finished")
 
 if __name__ == "__main__":
