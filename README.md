@@ -1,7 +1,8 @@
 # CSV-SQL-Transnmitter 
 
 This Python programm parses and transfers .csv data into a MySQL database.
-It contains a PyQT GUI to add the login data to the database and a systempath. All .csv files located in the given systempath will be processed and transmitted to the database.
+It contains a PyQT GUI to login to MySQL-database. All .csv files located in the user given systempath will be processed and transmitted to the database.
+If the database with the user give name not yet exists, it will be created.
 The user needs to declare keys that define at which line in the .csv files, the data and information are located.
 
 If you have a .csv file with the following content...
@@ -14,6 +15,6 @@ add;  "Germany";      80809; "Marienplatz"; 43
 add;  "Germany";      39683; "Ludwig-Weg"; 4
 
 ...then "tbl" is the key to parse for the table name,
-atr is the key to parse for the attribute names,
-frm is the key to parse for the attribute types,
-add is the key to parse for the data,
+"atr" is the key to parse for the attribute names,
+"frm" is the key to parse for the attribute types,
+"add" is the key to parse for the data.
