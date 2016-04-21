@@ -1,4 +1,4 @@
-# CSV-SQL-Transnmitter 
+# CSV-SQL-Transmitter 
 
 This Python script parses and transfers .csv data into a MySQL database.
 It contains a PyQT GUI to login to MySQL-database. All .csv files located in the user given systempath will be processed and transmitted to the database.
