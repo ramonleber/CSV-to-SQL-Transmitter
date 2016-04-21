@@ -11,7 +11,7 @@ tbl; Adresses
 atr; COUNTRY; ZIP_CODE; STREET; STREET_NUMBER
 frm; char[30]; numeric[5.0]; char[30]; numeric[5.0]
 add;  "Germany";      75196; "Karlstrasse"; 76
-add;  "Germany";      80809; "Marienplatz"; 43
+add;  "Germany";      80809; "Hauptstrasse"; 43
 add;  "Germany";      39683; "Ludwig-Weg"; 4
 
 ...then "tbl" is the key to parse for the table name,
